@@ -8,7 +8,7 @@ public class TestScreen {
 
 	//private Time startTime;
 	public static void main(String[] args) {
-
+/*
 		Employee bob = new Employee(0, "Robert","Paulson", 0, 0); 
 		System.out.println(bob.getFullName());
 		BankAccount bobAccount = new BankAccount("Bank of Tulips", "695583", "817265GEK");
@@ -16,6 +16,8 @@ public class TestScreen {
 		
 		TimeCard bobPay = new TimeCard();
 		System.out.println(bobPay.calculateDailyPay(10.00));
+	*/
+		DateTime test = new DateTime;
 		
 		
 		

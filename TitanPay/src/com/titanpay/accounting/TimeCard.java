@@ -6,7 +6,7 @@ import java.util.Calendar;
 
 public class TimeCard {
 	private String date;
-	private double startTime;
+	DateTime startTime = new DateTime();
 	private double endTime;
 	
 	public double calculateDailyPay(double rate){
