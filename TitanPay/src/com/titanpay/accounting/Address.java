@@ -4,9 +4,17 @@ public class Address {
 	private String streetAddress;
 	private String city;
 	private String state;
-	private String zip;
+	private int zip;
 
+	public Address(String streetAddress, String city, String state, int zip){
+		this.streetAddress = streetAddress;
+		this.city = city;
+		this.state = state;
+		this.zip = zip;
+	}
+	
 	public String getAddress() {
-		return null;
+		String address = streetAddress + city + state + zip;
+		return address;
 	}
 }
