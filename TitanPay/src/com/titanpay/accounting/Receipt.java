@@ -15,4 +15,9 @@ public class Receipt {
 		//Turning the inputed string into a Date we can use.
 		this.saleAmt = saleAmt;  
 	}
+	@Override
+	public String toString(){
+		String theString = "Receipt :\tDate: "+this.date+"\tSale Amount: "+this.saleAmt;
+		return theString;
+	}
 }

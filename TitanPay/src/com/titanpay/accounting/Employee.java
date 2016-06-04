@@ -5,14 +5,12 @@ public class Employee {
 	private int employeeId;
 	private String firstName;
 	private String lastName;
-	private double hourlyRate;
 	private double weeklyDues;
 
-	public Employee(int employeeId, String firstName,String lastName, double hourlyRate, double weeklyDues){
+	public Employee(int employeeId, String firstName,String lastName, double weeklyDues){
 		this.employeeId = employeeId;
 		this.firstName = firstName;
 		this.lastName = lastName;
-		this.hourlyRate = hourlyRate;
 		this.weeklyDues = weeklyDues;
 	}
 
@@ -21,6 +19,9 @@ public class Employee {
 		return fullName;
 	
 	}
-
+	@Override
+	public String toString(){
+		String theString = "Employee:\tID: "+this.employeeId+"\tName: "+this.firstName+" "+this.lastName;
+		return theString;	}
 
 }

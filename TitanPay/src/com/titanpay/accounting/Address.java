@@ -17,4 +17,9 @@ public class Address {
 		String address = streetAddress + city + state + zip;
 		return address;
 	}
+	@Override
+	public String toString(){
+		String theString = "Address :\tSalary: "+this.streetAddress+"\tCity: "+this.city+"\tState: "+this.state+"\tZip: "+zip;
+		return theString;
+	}
 }

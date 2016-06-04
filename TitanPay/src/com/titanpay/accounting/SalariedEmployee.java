@@ -1,25 +1,23 @@
 package com.titanpay.accounting;
 
-public class SalariedEmployee {
-	private int employeeId;
-	private String firstName;
-	private String lastName;
+public class SalariedEmployee extends Employee{
+	
 	private double salary;
 	private double commissionRate;
-	private double weeklyDues;
 	
-	public SalariedEmployee(int employeeId, String firstName,String lastName, double hourlyRate, double weeklyDues, double commissionRate, double salary){
-		this.employeeId = employeeId;
-		this.firstName = firstName;
-		this.lastName = lastName;
+	public SalariedEmployee(int employeeId, String firstName,String lastName, double weeklyDues, double commissionRate, double salary){
+		super(employeeId, firstName, lastName, weeklyDues);
+		
 		this.salary = salary;
 		this.commissionRate = commissionRate;
-		this.weeklyDues = weeklyDues;
 	}	
-	public String getFullName(){
-		String fullName = this.lastName+", "+this.firstName;
-		return fullName;
-	
+	@Override
+	public String toString(){
+		String theString = "Salaried Employee :\tSalary: "+this.salary+"\tCommission Rate: "+this.commissionRate;
+		return theString;
 	}
-	
+	/*public String toString(){
+		String theString = "Salaried Employee:\tID: "+this.employeeId+"\tName: "+this.firstName+" "+this.lastName+"\tSalary: "+this.salary+"\tCommission Rate: "+this.commissionRate;"
+		return theString;	}
+	*/
 }

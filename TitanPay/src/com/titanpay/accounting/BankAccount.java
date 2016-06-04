@@ -3,10 +3,10 @@ package com.titanpay.accounting;
 public class BankAccount {
 		
 	private String bankName;
-	private String routingNumber;
+	private int routingNumber;
 	private String accountId;
 	
-	public BankAccount(String bankName, String accountId, String routingNumber){
+	public BankAccount(String bankName, String accountId, int routingNumber){
 		this.bankName = bankName;	
 		this.accountId = accountId;
 		this.routingNumber = routingNumber;
@@ -17,5 +17,9 @@ public class BankAccount {
 		return depositMessage;
 		
 	}
-
+	@Override
+	public String toString(){
+		String theString = "Bank Account :\tID: "+this.accountId+"\tRouting Number: "+this.routingNumber+"\tBank Name: "+this.bankName;
+		return theString;
+	}
 }

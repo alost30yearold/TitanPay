@@ -10,7 +10,9 @@ import org.joda.time.format.ISODateTimeFormat;
 
 import com.titanpay.accounting.BankAccount;
 import com.titanpay.accounting.Employee;
+import com.titanpay.accounting.HourlyEmployee;
 import com.titanpay.accounting.Receipt;
+import com.titanpay.accounting.SalariedEmployee;
 import com.titanpay.accounting.TimeCard;
 
 public class TestScreen {
@@ -18,9 +20,15 @@ public class TestScreen {
 	//private Time startTime;
 	public static void main(String[] args) {
 
-		Employee bob = new Employee(0, "Robert","Paulson", 0, 0); 
-		//System.out.println(bob.getFullName());
-		BankAccount bobAccount = new BankAccount("Bank of Tulips", "695583", "817265GEK");
+		Employee bob = new Employee(0, "Robert","Paulson", 0);
+		SalariedEmployee bobSal = new SalariedEmployee(6255, "Robert", "Paulson", 20, .05, 20000.0);
+		HourlyEmployee bobHour = new HourlyEmployee(6626, "Robert","Jones", 20, 10.50);
+		
+		System.out.println(bob);
+		System.out.println(bobSal);
+		System.out.println(bobHour);
+		//System.out.println(bobHour.getFullName());
+		BankAccount bobAccount = new BankAccount("Bank of Tulips", "695583", 817265);
 		//System.out.println(bobAccount.deposit(1003.66));
 		
 		//TimeCard bobPay = new TimeCard("20160601-09:00", "20160601-16:00");
@@ -74,10 +82,10 @@ public class TestScreen {
 
 		    double calculatedPay = bobPay.calculateDailyPay(10);
 
-		    System.out.println(calculatedPay);
-
-
+		    System.out.println(bobPay);
 		    
+		    
+		    System.out.println(bobAccount);
 
 		    
 		 //   if (time.isLongerThan(time2)){

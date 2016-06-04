@@ -43,4 +43,9 @@ public class TimeCard {
 		double pay = regularPay + overtimePay;
 		return pay;
 	}
+	@Override
+	public String toString(){
+		String theString = "Time Card :\tDate: " +this.date+"\tStarted work: "+this.startTime+"\tEnded Work: "+this.endTime;
+		return theString;
+	}
 }
