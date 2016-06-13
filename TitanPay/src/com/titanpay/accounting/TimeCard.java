@@ -20,8 +20,7 @@ public class TimeCard {
 		//DateTimeFormatter formatter = DateTimeFormat.forPattern("yyyyMMdd-HH:mm");
 		//this.date = new DateTime();
 		//this.startedTime = date.getHourOfDay();
-		//this.day = date.getDayOfMonth();
-		
+		//this.day = date.getDayOfMonth();	
 		this.startTime = DateTime.now();
 		this.endTime = DateTime.now();
 		this.date = startTime;
@@ -32,12 +31,10 @@ public class TimeCard {
 		this.endTime = endTime;
 		this.date = DateTime.now();
 		
-		
 	}
 	public TimeCard(DateTime startTime){
 		this.startTime = startTime;
-		this.date = startTime;//DateTime.now();
-		
+		this.date = startTime;//DateTime.now();	
 		
 	}
 	public TimeCard(String startTime , String endTime ){
@@ -96,9 +93,5 @@ public class TimeCard {
 	public void setEndTime(DateTime endTime) {
 		this.endTime = endTime;
 	}
-	
-	//public int getDay(){
-	//	return day;
-	//}
 
 }

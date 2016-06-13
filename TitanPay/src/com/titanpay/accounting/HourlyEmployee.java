@@ -9,8 +9,7 @@ public class HourlyEmployee extends Employee implements Payable {
 	
 	private double hourlyRate;
 	ArrayList<TimeCard> timeCards = new ArrayList<TimeCard>();
-	
-	
+
 	public HourlyEmployee(int employeeId, String firstName, String lastName, double weeklyDues, double hourlyRate, Address address) {
 		super(employeeId, firstName, lastName, weeklyDues, address);
 		
@@ -21,13 +20,13 @@ public class HourlyEmployee extends Employee implements Payable {
 		TimeCard clockedIn = new TimeCard(DateTime.now());
 		timeCards.ensureCapacity(31);
 		timeCards.add(clockedIn);
-		System.out.println("clocked in at ***"+timeCards.size() + clockedIn);
+		System.out.println("Clocked in at "+clockedIn);
 	}
 	public void clockIn(TimeCard time){
 		TimeCard clockedIn = time;
 		timeCards.ensureCapacity(31);
 		timeCards.add(clockedIn);
-		System.out.println("clocked in at ***"+timeCards.size() + clockedIn);
+		System.out.println("Clocked in at "+clockedIn);
 	}
 	public void clockOut(){
 		DateTime currentDay = new DateTime();
@@ -37,12 +36,12 @@ public class HourlyEmployee extends Employee implements Payable {
 	
 				TimeCard clockedOut = t;
 				clockedOut.setEndTime(DateTime.now());
-				System.out.println("clocked out at ***" + clockedOut);
+				System.out.println("Clocked out at "+clockedOut);
 
 			}
 		}	
 	}
-	//May not work yetvvvvvv
+	//May not work yet   v
 	public void clockOut(TimeCard time){
 		DateTime currentDay = time.getEndTime();
 		for (TimeCard t : timeCards){
@@ -51,7 +50,7 @@ public class HourlyEmployee extends Employee implements Payable {
 	
 				TimeCard clockedOut = t;
 				clockedOut.setEndTime(time.getEndTime());
-				System.out.println("clocked out at ***" + clockedOut);
+				System.out.println("Clocked out at "+clockedOut);
 
 			}
 		}	

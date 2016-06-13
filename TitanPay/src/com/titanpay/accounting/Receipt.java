@@ -17,7 +17,6 @@ public class Receipt {
 	}
 	public Receipt(double saleAmt){
 		this.date = DateTime.now();
-		//Turning the inputed string into a Date we can use.
 		this.saleAmt = saleAmt;  
 	}
 	public double calculateCom(double commissionRate){

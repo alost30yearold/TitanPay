@@ -1,6 +1,6 @@
 package com.titanpay.accounting;
 
-import com.titanpay.accounting.Employee;
+//import com.titanpay.accounting.Employee;
 
 public abstract class PaymentMethod {
 	
@@ -8,10 +8,11 @@ public abstract class PaymentMethod {
 	protected double paymentAmount;
 
 	public PaymentMethod(String eName, double paymentAmount){
+		
 		this.eName = eName;
 		this.paymentAmount = paymentAmount;
 	}
-	/*
+	/* 
 	public PaymentMethod(Payable employee){
 		this.eName = employee.getFullNameFL();
 		String startDate = null;

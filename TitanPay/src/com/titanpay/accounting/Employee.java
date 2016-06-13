@@ -52,6 +52,5 @@ public abstract class Employee {
 	public void setPayMethod(PaymentMethod payMethod) {
 		this.payMethod = payMethod;
 	}
-
-	//public 
+ 
 }

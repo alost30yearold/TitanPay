@@ -52,8 +52,7 @@ public class SalariedEmployee extends Employee implements Payable{
 	
 			}
 		}
-		//return paySum;
-		this.getPayMethod().pay(this.getFullNameFL(), paySum);
+		payMethod.pay(this.getFullNameFL(), paySum);
 	}
 	
 	@Override
