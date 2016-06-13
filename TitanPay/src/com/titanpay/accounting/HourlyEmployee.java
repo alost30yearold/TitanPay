@@ -1,14 +1,96 @@
 package com.titanpay.accounting;
 
-public class HourlyEmployee extends Employee {
+import java.util.ArrayList;
+import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
+
+public class HourlyEmployee extends Employee implements Payable {
 	
 	private double hourlyRate;
-
-	public HourlyEmployee(int employeeId, String firstName, String lastName, double weeklyDues, double hourlyRate) {
-		super(employeeId, firstName, lastName, weeklyDues);
+	ArrayList<TimeCard> timeCards = new ArrayList<TimeCard>();
+	
+	
+	public HourlyEmployee(int employeeId, String firstName, String lastName, double weeklyDues, double hourlyRate, Address address) {
+		super(employeeId, firstName, lastName, weeklyDues, address);
 		
 		this.hourlyRate = hourlyRate;
 
+	}
+	public void clockIn(){
+		TimeCard clockedIn = new TimeCard(DateTime.now());
+		timeCards.ensureCapacity(31);
+		timeCards.add(clockedIn);
+		System.out.println("clocked in at ***"+timeCards.size() + clockedIn);
+	}
+	public void clockIn(TimeCard time){
+		TimeCard clockedIn = time;
+		timeCards.ensureCapacity(31);
+		timeCards.add(clockedIn);
+		System.out.println("clocked in at ***"+timeCards.size() + clockedIn);
+	}
+	public void clockOut(){
+		DateTime currentDay = new DateTime();
+		for (TimeCard t : timeCards){
+			
+			if(t.getDateOfMonth() == currentDay.getDayOfMonth() ){
+	
+				TimeCard clockedOut = t;
+				clockedOut.setEndTime(DateTime.now());
+				System.out.println("clocked out at ***" + clockedOut);
+
+			}
+		}	
+	}
+	//May not work yetvvvvvv
+	public void clockOut(TimeCard time){
+		DateTime currentDay = time.getEndTime();
+		for (TimeCard t : timeCards){
+			
+			if(t.getDateOfMonth() == currentDay.getDayOfMonth() ){
+	
+				TimeCard clockedOut = t;
+				clockedOut.setEndTime(time.getEndTime());
+				System.out.println("clocked out at ***" + clockedOut);
+
+			}
+		}	
+	}
+	public void addTimeCard(TimeCard addd){
+		timeCards.add(addd);
+
+	}
+	/*
+	 * @Override
+	public double performPay(DateTime startDate,DateTime endDate) {
+		double paySum=0;
+		for(TimeCard t : timeCards){
+			
+			if(t.getDateOfMonth() >= startDate.getDayOfMonth() && t.getDateOfMonth() <= endDate.getDayOfMonth()){
+				paySum += t.calculateDailyPay(hourlyRate);
+	
+			}
+		}
+		return paySum;
+	}
+	*/
+	@Override
+	public void pay(String startDate, String endDate) {
+		// Take incoming strings and make them useful Date objects
+		DateTimeFormatter formatter = DateTimeFormat.forPattern("yyyyMMdd-HH:mm");
+		DateTime startedDate = DateTime.parse(startDate, formatter);
+		DateTime endedDate = DateTime.parse(endDate, formatter);
+		double paySum=0;
+		for(TimeCard t : timeCards){
+					
+			if(t.getDateOfMonth() >= startedDate.getDayOfMonth() && t.getDateOfMonth() <= endedDate.getDayOfMonth()){
+			paySum += t.calculateDailyPay(hourlyRate);
+			
+			}
+		}
+		//return paySum;
+		//this.getPayMethod().pay(this.getFullNameFL(), paySum);
+		payMethod.pay(this.getFullNameFL(), paySum);
 	}
 	@Override
 	public String toString(){
@@ -20,5 +102,10 @@ public class HourlyEmployee extends Employee {
 		String theString = "Hourly Employee:\tID: "+this.employeeId+"\tName: "+this.firstName+" "+this.lastName+"\tHourly Rate: "+this.hourlyRate;"
 		return theString;	}
 	*/
+
+	
+	
+	
+	
 
 }

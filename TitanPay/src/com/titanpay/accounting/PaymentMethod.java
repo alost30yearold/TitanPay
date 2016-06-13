@@ -1,0 +1,32 @@
+package com.titanpay.accounting;
+
+import com.titanpay.accounting.Employee;
+
+public abstract class PaymentMethod {
+	
+	protected String eName;
+	protected double paymentAmount;
+
+	public PaymentMethod(String eName, double paymentAmount){
+		this.eName = eName;
+		this.paymentAmount = paymentAmount;
+	}
+	/*
+	public PaymentMethod(Payable employee){
+		this.eName = employee.getFullNameFL();
+		String startDate = null;
+		String endDate = null;
+		this.paymentAmount = employee.pay(startDate, endDate);
+	}
+	*/
+
+	public abstract void pay(String name,double amt);
+	
+	public String toString(){
+		String theString = "name "+eName+"payment amount : "+paymentAmount;
+		return theString;
+		
+	}
+	//public abstract void pay(Employee employ, Payable payable);
+	
+}

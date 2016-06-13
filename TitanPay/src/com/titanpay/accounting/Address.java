@@ -14,7 +14,7 @@ public class Address {
 	}
 	
 	public String getAddress() {
-		String address = streetAddress + city + state + zip;
+		String address = streetAddress+" "+city+" "+state+" "+zip;
 		return address;
 	}
 	@Override
