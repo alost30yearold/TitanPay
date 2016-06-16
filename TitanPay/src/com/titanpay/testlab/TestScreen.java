@@ -29,7 +29,7 @@ public class TestScreen {
 		//Employee bob = new Employee(0, "Robert","Paulson", 0);
 		Address bobHourAdd = new Address("6807 gullshit way", "Tampa", "FL", 33655);
 		//SalariedEmployee bobSal = new SalariedEmployee(6255, "Robert", "Paulson", 20, .05, 20000.0, null);
-		HourlyEmployee bobHour = new HourlyEmployee(6626, "Robert","Jones", 20, 10.50, bobHourAdd);
+		HourlyEmployee bobHour = new HourlyEmployee(6626, "Robert","Jones", 20, 10.50, bobHourAdd, new MailPayment("Robert Jones", 0, bobHourAdd));
 		
 		//System.out.println(bob);
 		//System.out.println(bobSal);
@@ -44,7 +44,7 @@ public class TestScreen {
 		bobHour.addTimeCard(bobPay4);
 		
 		
-		//bobHour.pay("20160601-09:00", "20160630-09:00");
+		bobHour.pay("20160601-09:00", "20160630-09:00");
 		
 		
 		//bobHour.clockIn(bobPay1);

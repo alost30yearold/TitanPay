@@ -12,8 +12,8 @@ public class SalariedEmployee extends Employee implements Payable{
 	private double commissionRate;
 	ArrayList<Receipt> receipts = new ArrayList<Receipt>();
 	
-	public SalariedEmployee(int employeeId, String firstName,String lastName, double weeklyDues, double commissionRate, double salary, Address address){
-		super(employeeId, firstName, lastName, weeklyDues, address);
+	public SalariedEmployee(int employeeId, String firstName,String lastName, double weeklyDues, double commissionRate, double salary, Address address,PaymentMethod payMethod){
+		super(employeeId, firstName, lastName, weeklyDues, address, payMethod);
 		
 		this.salary = salary;
 		this.commissionRate = commissionRate;

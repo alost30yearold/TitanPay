@@ -10,8 +10,8 @@ public class HourlyEmployee extends Employee implements Payable {
 	private double hourlyRate;
 	ArrayList<TimeCard> timeCards = new ArrayList<TimeCard>();
 
-	public HourlyEmployee(int employeeId, String firstName, String lastName, double weeklyDues, double hourlyRate, Address address) {
-		super(employeeId, firstName, lastName, weeklyDues, address);
+	public HourlyEmployee(int employeeId, String firstName, String lastName, double weeklyDues, double hourlyRate, Address address,PaymentMethod payMethod) {
+		super(employeeId, firstName, lastName, weeklyDues, address, payMethod);
 		
 		this.hourlyRate = hourlyRate;
 

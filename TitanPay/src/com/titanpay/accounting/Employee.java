@@ -13,14 +13,14 @@ public abstract class Employee {
 	private Address address;
 	protected PaymentMethod payMethod;
 
-	public Employee(int employeeId, String firstName,String lastName, double weeklyDues, Address address){//,PaymentMethod payMethod){
+	public Employee(int employeeId, String firstName,String lastName, double weeklyDues, Address address,PaymentMethod payMethod){
 
 		this.employeeId = employeeId;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.weeklyDues = weeklyDues;
 		this.address = address;
-		//this.payMethod = PickUpPayment;
+		this.payMethod = payMethod;
 	}
 	public abstract void pay(String start,String end);
 
