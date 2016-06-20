@@ -14,7 +14,7 @@ public class SalariedEmployee extends Employee implements Payable{
 	
 	public SalariedEmployee(int employeeId, String firstName,String lastName, double weeklyDues, double commissionRate, double salary, Address address,PaymentMethod payMethod){
 		super(employeeId, firstName, lastName, weeklyDues, address, payMethod);
-		
+		receipts = new ArrayList<Receipt>();
 		this.salary = salary;
 		this.commissionRate = commissionRate;
 	}
@@ -52,7 +52,7 @@ public class SalariedEmployee extends Employee implements Payable{
 	
 			}
 		}
-		payMethod.pay(this.getFullNameFL(), paySum);
+		this.getPayMethod().pay(this.getFullNameFL(), paySum);
 	}
 	
 	@Override

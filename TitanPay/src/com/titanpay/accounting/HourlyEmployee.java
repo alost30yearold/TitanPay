@@ -12,7 +12,7 @@ public class HourlyEmployee extends Employee implements Payable {
 
 	public HourlyEmployee(int employeeId, String firstName, String lastName, double weeklyDues, double hourlyRate, Address address,PaymentMethod payMethod) {
 		super(employeeId, firstName, lastName, weeklyDues, address, payMethod);
-		
+		timeCards = new ArrayList<TimeCard>();
 		this.hourlyRate = hourlyRate;
 
 	}
@@ -89,7 +89,7 @@ public class HourlyEmployee extends Employee implements Payable {
 		}
 		//return paySum;
 		//this.getPayMethod().pay(this.getFullNameFL(), paySum);
-		payMethod.pay(this.getFullNameFL(), paySum);
+		this.getPayMethod().pay(this.getFullNameFL(), paySum);
 	}
 	@Override
 	public String toString(){

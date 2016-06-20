@@ -3,7 +3,7 @@ package com.titanpay.accounting;
 //import java.util.ArrayList;
 
 
-public abstract class Employee {
+public abstract class Employee implements Payable {
 	
 	
 	private int employeeId;
@@ -11,7 +11,7 @@ public abstract class Employee {
 	private String lastName;
 	private double weeklyDues;
 	private Address address;
-	protected PaymentMethod payMethod;
+	private PaymentMethod payMethod;
 
 	public Employee(int employeeId, String firstName,String lastName, double weeklyDues, Address address,PaymentMethod payMethod){
 
@@ -22,7 +22,7 @@ public abstract class Employee {
 		this.address = address;
 		this.payMethod = payMethod;
 	}
-	public abstract void pay(String start,String end);
+	//public abstract void pay(String start,String end);
 
 	public String getFullNameLF(){
 		String fullName = this.lastName+", "+this.firstName;
