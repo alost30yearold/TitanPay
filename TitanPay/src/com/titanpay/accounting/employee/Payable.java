@@ -1,4 +1,4 @@
-package com.titanpay.accounting;
+package com.titanpay.accounting.employee;
 
 import java.util.ArrayList;
 
@@ -6,6 +6,7 @@ import org.joda.time.DateTime;
 
 public interface Payable {
 	public void pay(String startDate,String endDate);
+	
 	//public double performPay(DateTime startDate, DateTime endDate);
 
 }

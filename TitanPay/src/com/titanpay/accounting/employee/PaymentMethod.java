@@ -1,4 +1,4 @@
-package com.titanpay.accounting;
+package com.titanpay.accounting.employee;
 
 //import com.titanpay.accounting.Employee;
 

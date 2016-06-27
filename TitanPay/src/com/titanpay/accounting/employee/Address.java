@@ -1,4 +1,4 @@
-package com.titanpay.accounting;
+package com.titanpay.accounting.employee;
 
 public class Address {
 	private String streetAddress;

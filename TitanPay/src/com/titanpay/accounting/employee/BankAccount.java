@@ -1,19 +1,21 @@
-package com.titanpay.accounting;
+package com.titanpay.accounting.employee;
+
+import java.text.DecimalFormat;
 
 public class BankAccount {
 		
 	private String bankName;
 	private int routingNumber;
-	private String accountId;
+	private int accountId;
 	
-	public BankAccount(String bankName, String accountId, int routingNumber){
+	public BankAccount(String bankName, int accountId, int routingNumber){
 		this.bankName = bankName;	
 		this.accountId = accountId;
 		this.routingNumber = routingNumber;
 	}
 	public String deposit(double amt){
-		
-		String depositMessage = "Depositing $" + amt +" in " + this.bankName +" Acount Number: "+ this.accountId+" using Routing Number: " +this.routingNumber;
+		DecimalFormat df = new DecimalFormat("#.00");
+		String depositMessage = "Depositing $ " + df.format(amt) +" in " + this.bankName +" Acount Number: "+ this.accountId+" using Routing Number: " +this.routingNumber;
 		return depositMessage;
 		
 	}

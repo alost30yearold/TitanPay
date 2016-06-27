@@ -1,4 +1,4 @@
-package com.titanpay.accounting;
+package com.titanpay.payapp;
 
 
 import org.joda.time.DateTime;
@@ -12,8 +12,6 @@ public class TimeCard {
 	private DateTime startTime;
 	private DateTime endTime;
 	private int day;
-	//private int startedTime;
-	//private int endedTime;
 	
 	public TimeCard(){
 		// Take incoming strings and make them useful Date objects
@@ -39,7 +37,8 @@ public class TimeCard {
 	}
 	public TimeCard(String startTime , String endTime ){
 		// Take incoming strings and make them useful Date objects
-		DateTimeFormatter formatter = DateTimeFormat.forPattern("yyyyMMdd-HH:mm");
+		//DateTimeFormatter formatter = DateTimeFormat.forPattern("yyyyMMdd-HH:mm");
+		DateTimeFormatter formatter = DateTimeFormat.forPattern("MM/dd/yyyy-HHmm");
 		this.startTime = DateTime.parse(startTime, formatter);
 		this.endTime = DateTime.parse(endTime, formatter);
 		
@@ -47,8 +46,11 @@ public class TimeCard {
 	}
 	public TimeCard(String startTime , String endTime, String date ){
 		// Take incoming strings and make them useful Date objects
-		DateTimeFormatter formatter = DateTimeFormat.forPattern("yyyyMMdd-HH:mm");
-		this.startTime = DateTime.parse(startTime, formatter);
+		//DateTimeFormatter formatter = DateTimeFormat.forPattern("yyyyMMdd-HH:mm");
+		DateTimeFormatter formatter = DateTimeFormat.forPattern("MM/dd/yyyy-HHmm");
+		DateTimeFormatter startformatter = DateTimeFormat.forPattern("MM/dd/yyyy-Hmm");
+		
+		this.startTime = DateTime.parse(startTime, startformatter);
 		this.endTime = DateTime.parse(endTime, formatter);
 		this.date = DateTime.parse(date, formatter);
 
@@ -75,8 +77,14 @@ public class TimeCard {
 		return theString;
 	}
 	
-	public int getDateOfMonth() {
-		return date.getDayOfMonth();
+	//public int getDayOfMonth() {
+	//	return date.getDayOfMonth();
+	//}
+	public int getYear() {
+		return date.getYear();
+	}
+	public int getDayOfYear() {
+		return date.getDayOfYear();
 	}
 	public void setDate(DateTime date) {
 		this.date = date;

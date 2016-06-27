@@ -1,4 +1,6 @@
-package com.titanpay.accounting;
+package com.titanpay.accounting.employee;
+
+import java.text.DecimalFormat;
 
 public class DirectDepositPayment extends PaymentMethod {
 	private BankAccount bankAccount;
@@ -10,6 +12,7 @@ public class DirectDepositPayment extends PaymentMethod {
 	}
 	
 	public void pay(String eName, double paymentAmount) {
+		
 		System.out.println(bankAccount.deposit(paymentAmount)+" for "+eName);
 
 	}

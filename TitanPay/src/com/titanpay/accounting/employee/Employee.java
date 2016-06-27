@@ -1,4 +1,4 @@
-package com.titanpay.accounting;
+package com.titanpay.accounting.employee;
 
 //import java.util.ArrayList;
 
@@ -13,6 +13,10 @@ public abstract class Employee implements Payable {
 	private Address address;
 	private PaymentMethod payMethod;
 
+	public Employee(){
+		
+	}
+	
 	public Employee(int employeeId, String firstName,String lastName, double weeklyDues, Address address,PaymentMethod payMethod){
 
 		this.employeeId = employeeId;
@@ -23,6 +27,14 @@ public abstract class Employee implements Payable {
 		this.payMethod = payMethod;
 	}
 	//public abstract void pay(String start,String end);
+
+	public int getEmployeeId() {
+		return employeeId;
+	}
+
+	public void setEmployeeId(int employeeId) {
+		this.employeeId = employeeId;
+	}
 
 	public String getFullNameLF(){
 		String fullName = this.lastName+", "+this.firstName;

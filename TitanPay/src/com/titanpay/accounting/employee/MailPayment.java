@@ -1,4 +1,6 @@
-package com.titanpay.accounting;
+package com.titanpay.accounting.employee;
+
+import java.text.DecimalFormat;
 
 public class MailPayment extends PaymentMethod {
 	
@@ -10,7 +12,8 @@ public class MailPayment extends PaymentMethod {
 	
 	}
 	public void pay(String eName, double paymentAmount){
-		System.out.println("Mailing check to "+this.eName+" for "+paymentAmount+" to "+address.getAddress());
+		DecimalFormat df = new DecimalFormat("#.00");
+		System.out.println("Mailing check to "+this.eName+" for $ "+df.format(paymentAmount)+" to "+address.getAddress());
 
 	}
 	//@Override

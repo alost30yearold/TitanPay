@@ -1,5 +1,6 @@
 package com.titanpay.testlab;
 
+import java.util.List;
 import java.util.Scanner;
 
 import org.joda.time.DateTime;
@@ -10,42 +11,89 @@ import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 import org.joda.time.format.ISODateTimeFormat;
 
-import com.titanpay.accounting.Address;
-import com.titanpay.accounting.BankAccount;
-import com.titanpay.accounting.Employee;
-import com.titanpay.accounting.HourlyEmployee;
-import com.titanpay.accounting.MailPayment;
-import com.titanpay.accounting.Receipt;
-import com.titanpay.accounting.SalariedEmployee;
-import com.titanpay.accounting.TimeCard;
-import com.titanpay.accounting.PaymentMethod;
-import com.titanpay.accounting.PickUpPayment;
+import com.titanpay.accounting.employee.Address;
+import com.titanpay.accounting.employee.BankAccount;
+import com.titanpay.accounting.employee.DirectDepositPayment;
+import com.titanpay.accounting.employee.Employee;
+import com.titanpay.accounting.employee.HourlyEmployee;
+import com.titanpay.accounting.employee.MailPayment;
+import com.titanpay.accounting.employee.PaymentMethod;
+import com.titanpay.accounting.employee.PickUpPayment;
+import com.titanpay.accounting.employee.SalariedEmployee;
+import com.titanpay.payapp.CsvReader;
+import com.titanpay.payapp.Receipt;
+import com.titanpay.payapp.TimeCard;
 
-public class TestScreen {
+
+public class TestScreen {}
 
 	//private Time startTime;
-	public static void main(String[] args) {
+	
+	
+	
+	
+	/*public static void main(String[] args) {
 
 		//Employee bob = new Employee(0, "Robert","Paulson", 0);
 		Address bobHourAdd = new Address("6807 gullshit way", "Tampa", "FL", 33655);
+		Address bobHourAdd1 = new Address("6807 gullshit way", "Tampa", "FL", 33655);
+		Address bobHourAdd2 = new Address("6807 gullshit way", "Tampa", "FL", 33655);
+		BankAccount bobAcc = new BankAccount("Supid Money 'Merica", 245888, 52648569);
 		//SalariedEmployee bobSal = new SalariedEmployee(6255, "Robert", "Paulson", 20, .05, 20000.0, null);
 		HourlyEmployee bobHour = new HourlyEmployee(6626, "Robert","Jones", 20, 10.50, bobHourAdd, new MailPayment("Robert Jones", 0, bobHourAdd));
-		
+		HourlyEmployee bobHour1 = new HourlyEmployee(6625, "Fainel","Duck", 20, 10.50, bobHourAdd1, new PickUpPayment("Fainel Duck", 0));
+		HourlyEmployee bobHour2 = new HourlyEmployee(6624, "Lois","Lane", 20, 10.50, bobHourAdd2, new DirectDepositPayment("Lois Lane", 0, bobAcc));
 		//System.out.println(bob);
 		//System.out.println(bobSal);
 		//System.out.println(bobHour);
-		TimeCard bobPay1 = new TimeCard("20160601-09:00", "20160601-16:00");
-		TimeCard bobPay2 = new TimeCard("20160602-09:00", "20160602-16:00");
-		TimeCard bobPay3 = new TimeCard("20160607-09:00", "20160607-16:00");
-		TimeCard bobPay4 = new TimeCard();
+		TimeCard bobPay1 = new TimeCard("6/20/2016-0900", "6/20/2016-1600");
+		TimeCard bobPay2 = new TimeCard("6/21/2016-0900", "6/21/2016-1600");
+		TimeCard bobPay3 = new TimeCard("6/22/2016-0900", "6/22/2016-1600");
+		String time1 = "900";
+		if (time1.length()<=3)
+			time1 = "0"+time1;
+			
+		TimeCard bobPay4 = new TimeCard("6/23/2016"+"-"+time1,"6/23/2016"+"-"+"1700");
 		bobHour.addTimeCard(bobPay1);
 		bobHour.addTimeCard(bobPay2);
 		bobHour.addTimeCard(bobPay3);
-		bobHour.addTimeCard(bobPay4);
+		//bobHour.addTimeCard(bobPay4);
+		bobHour1.addTimeCard(bobPay1);
+		bobHour1.addTimeCard(bobPay2);
+		bobHour2.addTimeCard(bobPay3);
+		//bobHour2.addTimeCard(bobPay4);
+		//System.out.println(bobPay4);
+		
+		
+		
+		
+		//CsvReader.parseHourlyEmployees("hourly_employees.csv");
+		List<HourlyEmployee> employeesHour = CsvReader.parseHourlyEmployees("hourly_employees.csv");
+		for (HourlyEmployee employee : employeesHour) {
+			System.out.println(employee);
+			System.out.println("employee");
+		}
+		List<SalariedEmployee> employeesSal = CsvReader.parseSalariedEmployees("salaried_employees.csv");
+		for (SalariedEmployee employee : employeesSal) {
+			System.out.println(employee);
+			System.out.println("employee");
+		}
+		List<Receipt> receiptsF = CsvReader.parseReceipts("receipts.csv", 1);
+		for (Receipt employee : receiptsF) {
+			//System.out.println(employee);
+			//System.out.println("employee");
+		}
+		List<TimeCard> employeesTime = CsvReader.parseTimeCards("timecards.csv", 1);
+		for (TimeCard employee : employeesTime) {
+			//System.out.println(employee);
+			//System.out.println("employee");
+		}
+		//System.out.println(employees.get(0));
 		
 		
 		bobHour.pay("20160601-09:00", "20160630-09:00");
-		
+		//bobHour1.pay("20160601-09:00", "20160630-09:00");
+		//bobHour2.pay("20160601-09:00", "20160630-09:00");
 		
 		//bobHour.clockIn(bobPay1);
 		//bobHour.timeCards.size();
@@ -96,7 +144,7 @@ public class TestScreen {
 
 		
 		//System.out.println(bobHour.getFullName());
-		BankAccount bobAccount = new BankAccount("Bank of Tulips", "695583", 817265);
+		BankAccount bobAccount = new BankAccount("Bank of Tulips", 695583, 817265);
 		//System.out.println(bobAccount.deposit(1003.66));
 		
 		TimeCard bobPay = new TimeCard("20160601-09:00", "20160601-16:00");
@@ -154,8 +202,8 @@ public class TestScreen {
 		    //System.out.println(bobAccount);
 		    DateTime fuck = new DateTime();
 		    fuck.getDayOfMonth();
-		    //System.out.println(fuck.getDayOfMonth());
-		    
+		    System.out.println(fuck.getDayOfMonth());
+		    System.out.println(fuck.getDayOfYear());
 		    
 		    
 		    TimeCard tester= new TimeCard();
@@ -172,7 +220,7 @@ public class TestScreen {
 		//    Duration fytf = time;
 		 //   String fubar = duration.toString();
 		 //   System.out.println(fubar);
-		    /*
+		    
 		    private int startYear = 2016;
 		    private int startMonth = 6;
 		    private int startDay = 1;
@@ -187,9 +235,9 @@ public class TestScreen {
 
 		    DateTime startTime = new DateTime(startYear,startMonth,startDay,startHour,startMin);
 		    DateTime endTime = new DateTime(endYear,endMonth,endDay,endHour,endMin);
-		    */  
+		      
 		    
 		    
 	}
 
-}
+}*/

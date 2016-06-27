@@ -1,4 +1,4 @@
-package com.titanpay.accounting;
+package com.titanpay.payapp;
 
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;

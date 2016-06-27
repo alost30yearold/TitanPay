@@ -1,10 +1,14 @@
-package com.titanpay.accounting;
+package com.titanpay.accounting.employee;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.List;
 
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
+
+import com.titanpay.payapp.Receipt;
 
 public class SalariedEmployee extends Employee implements Payable{
 	
@@ -23,6 +27,9 @@ public class SalariedEmployee extends Employee implements Payable{
 		receipts.add(madeSale);
 		System.out.println("added sales receipt: ");
 		
+	}
+	public void setReceiptsArray(List<Receipt> receipt){
+		receipts = (ArrayList<Receipt>) receipt;
 	}
 	/*
 	@Override
@@ -44,6 +51,7 @@ public class SalariedEmployee extends Employee implements Payable{
 		DateTimeFormatter formatter = DateTimeFormat.forPattern("yyyyMMdd-HH:mm");
 		DateTime startedDate = DateTime.parse(startDate, formatter);
 		DateTime endedDate = DateTime.parse(endDate, formatter);
+		
 		double paySum = this.salary;
 		for(Receipt r : receipts){
 			
@@ -52,12 +60,12 @@ public class SalariedEmployee extends Employee implements Payable{
 	
 			}
 		}
-		this.getPayMethod().pay(this.getFullNameFL(), paySum);
+		this.getPayMethod().pay(this.getFullNameFL(),paySum);
 	}
 	
 	@Override
 	public String toString(){
-		String theString = "Salaried Employee :\tSalary: "+this.salary+"\tCommission Rate: "+this.commissionRate;
+		String theString = "Salaried Employee : "+this.getFullNameFL()+"\tSalary: "+this.salary+"\tCommission Rate: "+this.commissionRate;
 		return theString;
 	}
 	/*public String toString(){

@@ -1,14 +1,22 @@
-package com.titanpay.accounting;
+package com.titanpay.accounting.employee;
 
 import java.util.ArrayList;
+import java.util.List;
+
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 
+import com.titanpay.payapp.TimeCard;
+
 public class HourlyEmployee extends Employee implements Payable {
 	
 	private double hourlyRate;
-	ArrayList<TimeCard> timeCards = new ArrayList<TimeCard>();
+	private ArrayList<TimeCard> timeCards = new ArrayList<TimeCard>();
+	
+	public HourlyEmployee(){
+		
+	}
 
 	public HourlyEmployee(int employeeId, String firstName, String lastName, double weeklyDues, double hourlyRate, Address address,PaymentMethod payMethod) {
 		super(employeeId, firstName, lastName, weeklyDues, address, payMethod);
@@ -20,23 +28,23 @@ public class HourlyEmployee extends Employee implements Payable {
 		TimeCard clockedIn = new TimeCard(DateTime.now());
 		timeCards.ensureCapacity(31);
 		timeCards.add(clockedIn);
-		System.out.println("Clocked in at "+clockedIn);
+		//System.out.println("Clocked in at "+clockedIn);
 	}
 	public void clockIn(TimeCard time){
 		TimeCard clockedIn = time;
 		timeCards.ensureCapacity(31);
 		timeCards.add(clockedIn);
-		System.out.println("Clocked in at "+clockedIn);
+		//System.out.println("Clocked in at "+clockedIn);
 	}
 	public void clockOut(){
 		DateTime currentDay = new DateTime();
 		for (TimeCard t : timeCards){
 			
-			if(t.getDateOfMonth() == currentDay.getDayOfMonth() ){
+			if(t.getDayOfYear() == currentDay.getDayOfYear() && t.getYear() == currentDay.getYear() ){
 	
 				TimeCard clockedOut = t;
 				clockedOut.setEndTime(DateTime.now());
-				System.out.println("Clocked out at "+clockedOut);
+				//System.out.println("Clocked out at "+clockedOut);
 
 			}
 		}	
@@ -46,33 +54,25 @@ public class HourlyEmployee extends Employee implements Payable {
 		DateTime currentDay = time.getEndTime();
 		for (TimeCard t : timeCards){
 			
-			if(t.getDateOfMonth() == currentDay.getDayOfMonth() ){
+			if(t.getDayOfYear() == currentDay.getDayOfYear() ){
 	
 				TimeCard clockedOut = t;
 				clockedOut.setEndTime(time.getEndTime());
-				System.out.println("Clocked out at "+clockedOut);
+				//System.out.println("Clocked out at "+clockedOut);
 
 			}
 		}	
+	}
+	public void setTimeCardsArray(List<TimeCard> timeCard){
+	this.timeCards = (ArrayList<TimeCard>) timeCard;
+		
+		
 	}
 	public void addTimeCard(TimeCard addd){
 		timeCards.add(addd);
 
 	}
-	/*
-	 * @Override
-	public double performPay(DateTime startDate,DateTime endDate) {
-		double paySum=0;
-		for(TimeCard t : timeCards){
-			
-			if(t.getDateOfMonth() >= startDate.getDayOfMonth() && t.getDateOfMonth() <= endDate.getDayOfMonth()){
-				paySum += t.calculateDailyPay(hourlyRate);
 	
-			}
-		}
-		return paySum;
-	}
-	*/
 	@Override
 	public void pay(String startDate, String endDate) {
 		// Take incoming strings and make them useful Date objects
@@ -82,7 +82,7 @@ public class HourlyEmployee extends Employee implements Payable {
 		double paySum=0;
 		for(TimeCard t : timeCards){
 					
-			if(t.getDateOfMonth() >= startedDate.getDayOfMonth() && t.getDateOfMonth() <= endedDate.getDayOfMonth()){
+			if(t.getDayOfYear() >= startedDate.getDayOfYear() && t.getDayOfYear() <= endedDate.getDayOfYear() && t.getYear() >= startedDate.getYear() && t.getYear() <= endedDate.getYear()){
 			paySum += t.calculateDailyPay(hourlyRate);
 			
 			}
@@ -91,9 +91,10 @@ public class HourlyEmployee extends Employee implements Payable {
 		//this.getPayMethod().pay(this.getFullNameFL(), paySum);
 		this.getPayMethod().pay(this.getFullNameFL(), paySum);
 	}
+	
 	@Override
 	public String toString(){
-		String theString = "Hourly Employee :\tHourly Rate: "+this.hourlyRate;
+		String theString = "Hourly Employee :"+this.getFullNameFL()+"\tHourly Rate: "+this.hourlyRate;
 		return theString;
 	}
 	/*
@@ -101,10 +102,5 @@ public class HourlyEmployee extends Employee implements Payable {
 		String theString = "Hourly Employee:\tID: "+this.employeeId+"\tName: "+this.firstName+" "+this.lastName+"\tHourly Rate: "+this.hourlyRate;"
 		return theString;	}
 	*/
-
-	
-	
-	
-	
 
 }
