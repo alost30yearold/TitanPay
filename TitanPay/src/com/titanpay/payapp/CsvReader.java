@@ -35,7 +35,7 @@ public class CsvReader {
 				emplid = Integer.parseInt(receiptData[0]);
 				
 				if (emplid == employeeId){
-					saleAmt = Double.parseDouble(receiptData[3])+Double.parseDouble(receiptData[4]);			
+					saleAmt = Double.parseDouble(receiptData[3])*Double.parseDouble(receiptData[4]);			
 					Receipt receipt = new Receipt(saleAmt);
 					parsedReceipts.add(receipt);
 				}
@@ -64,9 +64,7 @@ public class CsvReader {
 				// parse out the data
 				String[] receiptData = line.split("\\s*,\\s*");
 				emplid = Integer.parseInt(receiptData[0]);
-					System.out.println("FUCK");
-					saleAmt = Double.parseDouble(receiptData[3])+Double.parseDouble(receiptData[4]);
-								
+					saleAmt = Double.parseDouble(receiptData[3])*Double.parseDouble(receiptData[4]);
 					Receipt receipt = new Receipt(saleAmt);
 					parsedReceipts.add(receipt);
 

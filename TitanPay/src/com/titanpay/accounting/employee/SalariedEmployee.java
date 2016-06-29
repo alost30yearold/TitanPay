@@ -72,6 +72,24 @@ public class SalariedEmployee extends Employee implements Payable{
 		String theString = "Salaried Employee:\tID: "+this.employeeId+"\tName: "+this.firstName+" "+this.lastName+"\tSalary: "+this.salary+"\tCommission Rate: "+this.commissionRate;"
 		return theString;	}
 	*/
+	@Override
+	public String payToString(String startDate, String endDate) {
+		// Take incoming strings and make them useful Date objects
+				DateTimeFormatter formatter = DateTimeFormat.forPattern("yyyyMMdd-HH:mm");
+				DateTime startedDate = DateTime.parse(startDate, formatter);
+				DateTime endedDate = DateTime.parse(endDate, formatter);
+				
+				double paySum = this.salary;
+				for(Receipt r : receipts){
+					
+					if(r.getDateOfMonth() >= startedDate.getDayOfMonth() && r.getDateOfMonth() <= endedDate.getDayOfMonth()){
+						paySum += r.calculateCom(commissionRate);
+			
+					}
+				}
+				return this.getPayMethod().payToString(this.getFullNameFL(),paySum);
+		
+	}
 	
 	
 }

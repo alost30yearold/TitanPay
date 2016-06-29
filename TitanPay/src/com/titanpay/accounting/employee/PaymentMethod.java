@@ -22,6 +22,7 @@ public abstract class PaymentMethod {
 	*/
 
 	public abstract void pay(String name,double amt);
+	public abstract String payToString(String eName, double paymentAmount);
 	
 	public String toString(){
 		String theString = "name "+eName+"payment amount : "+paymentAmount;

@@ -16,7 +16,14 @@ public class DirectDepositPayment extends PaymentMethod {
 		System.out.println(bankAccount.deposit(paymentAmount)+" for "+eName);
 
 	}
-	
+	public String payToString(String eName, double paymentAmount){
+		if (paymentAmount !=0){
+		String paye = bankAccount.deposit(paymentAmount)+" for "+eName;
+		return paye;
+		}
+		return null;
+
+	}
 
 }
 

@@ -2,14 +2,21 @@ package com.titanpay.accounting.view;
 
 import java.util.List;
 
+import com.titanpay.accounting.MainApp;
+import com.titanpay.accounting.employee.Employee;
 import com.titanpay.accounting.employee.HourlyEmployee;
 import com.titanpay.accounting.employee.SalariedEmployee;
 import com.titanpay.payapp.CsvReader;
 import com.titanpay.payapp.Receipt;
 import com.titanpay.payapp.TimeCard;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.ListView;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -18,67 +25,47 @@ public class PayrollOverviewControler {
     private TextField startDateField;
     @FXML
     private TextField endDateField;
-   
-    
-    List<HourlyEmployee> employeesHour;
-    List<SalariedEmployee> employeesSal;
-   // List<TimeCard> employeesTimeCard;
-   // List<Receipt> employeesReceipts;
     @FXML
-    private TableView<HourlyEmployee> empHTable;
+    private ListView<String> payedS;
     
-   // private Stage dialogStage;
+    private ObservableList<String> payedPeople = FXCollections.observableArrayList();
+ 
+    private boolean payrollClicked = false;
 
-    private boolean okClicked = false;
+    private MainApp mainApp;
 
+    public PayrollOverviewControler() {
+    }
     
     @FXML
     private void initialize() {
-    	employeesHour = CsvReader.parseHourlyEmployees("hourly_employees.csv");	
-		//employeesTimeCard = CsvReader.parseTimeCards("timecards.csv");
-		for (HourlyEmployee employee : employeesHour){
-			List<TimeCard> hourETimeCard = CsvReader.parseTimeCards("timecards.csv",employee.getEmployeeId());
-			employee.setTimeCardsArray(hourETimeCard);
-		}
-			
-		employeesSal = CsvReader.parseSalariedEmployees("salaried_employees.csv");
-		for (SalariedEmployee employee : employeesSal) {
-			List<Receipt> salEReceipt = CsvReader.parseReceipts("receipts.csv",employee.getEmployeeId());
-			employee.setReceiptsArray(salEReceipt);
-		}
-		
+    	
     }
     /**
-     * Returns true if the user clicked OK, false otherwise.
+     * Is called by the main application to give a reference back to itself.
      * 
-     * @return
+     * @param mainApp
      */
-    public boolean isOkClicked() {
-        return okClicked;
+    public void setMainApp(MainApp mainApp) {
+        this.mainApp = mainApp;
     }
+ 
     @FXML
     private void handleRunPayroll() {
-    	
-    	//String sTime = startDateField.getText();
-    	//System.out.println(employeesHour);
-    	for (HourlyEmployee employee : employeesHour){
-    		employee.pay(startDateField.getText(), endDateField.getText());
+
+    	for (HourlyEmployee employee : mainApp.getEmployeesHour()){
+    		if (employee.payToString(startDateField.getText(), endDateField.getText()) != null)
+    		payedPeople.add(employee.payToString(startDateField.getText(), endDateField.getText()));
+    		
     	}
-    	for (SalariedEmployee employee : employeesSal){
-    		employee.pay(startDateField.getText(), endDateField.getText());
+    	for (SalariedEmployee employee : mainApp.getEmployeesSal()){
+    		if (employee.payToString(startDateField.getText(), endDateField.getText()) != null)
+    		payedPeople.add(employee.payToString(startDateField.getText(), endDateField.getText()));
     	}
-    	// okClicked = true;
-         //dialogStage.close();
-    	
-    	
-    	
-    	
-    	
-    	
+
+    	payedS.setItems(payedPeople);
+    	//payed.setItems(mainApp.gethEmployeesData());
+    		
+    	payrollClicked = true;
     }
-       /* Person tempPerson = new Person();
-        boolean okClicked = mainApp.showPersonEditDialog(tempPerson);
-        if (okClicked) {
-            mainApp.getPersonData().add(tempPerson);
-        }*/
 }

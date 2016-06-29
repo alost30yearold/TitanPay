@@ -12,8 +12,18 @@ public class MailPayment extends PaymentMethod {
 	
 	}
 	public void pay(String eName, double paymentAmount){
+		
 		DecimalFormat df = new DecimalFormat("#.00");
 		System.out.println("Mailing check to "+this.eName+" for $ "+df.format(paymentAmount)+" to "+address.getAddress());
+
+	}
+	public String payToString(String eName, double paymentAmount){
+		if (paymentAmount !=0){
+		DecimalFormat df = new DecimalFormat("#.00");
+		String paye = "Mailing check to "+this.eName+" for $ "+df.format(paymentAmount)+" to "+address.getAddress();
+		return paye;
+		}
+		return null;
 
 	}
 	//@Override

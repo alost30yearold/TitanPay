@@ -25,14 +25,15 @@ import com.titanpay.payapp.Receipt;
 import com.titanpay.payapp.TimeCard;
 
 
-public class TestScreen {}
+public class TestScreen {
+	/*
 
 	//private Time startTime;
 	
 	
 	
 	
-	/*public static void main(String[] args) {
+	public static void main(String[] args) {
 
 		//Employee bob = new Employee(0, "Robert","Paulson", 0);
 		Address bobHourAdd = new Address("6807 gullshit way", "Tampa", "FL", 33655);
@@ -68,26 +69,30 @@ public class TestScreen {}
 		
 		
 		//CsvReader.parseHourlyEmployees("hourly_employees.csv");
-		List<HourlyEmployee> employeesHour = CsvReader.parseHourlyEmployees("hourly_employees.csv");
+		/*List<HourlyEmployee> employeesHour = CsvReader.parseHourlyEmployees("hourly_employees.csv");
 		for (HourlyEmployee employee : employeesHour) {
 			System.out.println(employee);
 			System.out.println("employee");
-		}
-		List<SalariedEmployee> employeesSal = CsvReader.parseSalariedEmployees("salaried_employees.csv");
+		}*/
+		/*List<SalariedEmployee> employeesSal = CsvReader.parseSalariedEmployees("salaried_employees.csv");
 		for (SalariedEmployee employee : employeesSal) {
 			System.out.println(employee);
 			System.out.println("employee");
-		}
-		List<Receipt> receiptsF = CsvReader.parseReceipts("receipts.csv", 1);
+		}*/
+		
+		List<Receipt> receiptsF = CsvReader.parseReceipts("receipts.csv");
 		for (Receipt employee : receiptsF) {
 			//System.out.println(employee);
 			//System.out.println("employee");
 		}
-		List<TimeCard> employeesTime = CsvReader.parseTimeCards("timecards.csv", 1);
-		for (TimeCard employee : employeesTime) {
+		/*List<TimeCard> employeesTime = CsvReader.parseTimeCards("timecards.csv", 1);
+		for (TimeCard employee1 : employeesTime) {
 			//System.out.println(employee);
-			//System.out.println("employee");
-		}
+			System.out.println("employee");
+		}*/
+		
+		
+		
 		//System.out.println(employees.get(0));
 		
 		
@@ -206,7 +211,7 @@ public class TestScreen {}
 		    System.out.println(fuck.getDayOfYear());
 		    
 		    
-		    TimeCard tester= new TimeCard();
+		    TimeCard tester= new TimeCard();}
 		    
 		  //System.out.println(tester.getStartTime());
 
@@ -240,4 +245,4 @@ public class TestScreen {}
 		    
 	}
 
-}*/
+

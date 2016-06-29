@@ -24,6 +24,11 @@ public class HourlyEmployee extends Employee implements Payable {
 		this.hourlyRate = hourlyRate;
 
 	}
+	public HourlyEmployee(String firstName, String lastName) {
+		super(firstName, lastName);
+		
+	}
+
 	public void clockIn(){
 		TimeCard clockedIn = new TimeCard(DateTime.now());
 		timeCards.ensureCapacity(31);
@@ -94,7 +99,7 @@ public class HourlyEmployee extends Employee implements Payable {
 	
 	@Override
 	public String toString(){
-		String theString = "Hourly Employee :"+this.getFullNameFL()+"\tHourly Rate: "+this.hourlyRate;
+		String theString = "Hourly fEmployee :"+this.getFullNameFL()+"\tHourly Rate: "+this.hourlyRate;
 		return theString;
 	}
 	/*
@@ -102,5 +107,25 @@ public class HourlyEmployee extends Employee implements Payable {
 		String theString = "Hourly Employee:\tID: "+this.employeeId+"\tName: "+this.firstName+" "+this.lastName+"\tHourly Rate: "+this.hourlyRate;"
 		return theString;	}
 	*/
+
+	@Override
+	public String payToString(String startDate, String endDate) {
+		// Take incoming strings and make them useful Date objects
+				DateTimeFormatter formatter = DateTimeFormat.forPattern("yyyyMMdd-HH:mm");
+				DateTime startedDate = DateTime.parse(startDate, formatter);
+				DateTime endedDate = DateTime.parse(endDate, formatter);
+				double paySum=0;
+				for(TimeCard t : timeCards){
+							
+					if(t.getDayOfYear() >= startedDate.getDayOfYear() && t.getDayOfYear() <= endedDate.getDayOfYear() && t.getYear() >= startedDate.getYear() && t.getYear() <= endedDate.getYear()){
+					paySum += t.calculateDailyPay(hourlyRate);
+					
+					}
+				}
+				//return paySum;
+				//this.getPayMethod().pay(this.getFullNameFL(), paySum);
+				return this.getPayMethod().payToString(this.getFullNameFL(), paySum);
+		
+	}
 
 }

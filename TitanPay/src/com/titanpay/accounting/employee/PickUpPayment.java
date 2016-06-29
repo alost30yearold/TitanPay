@@ -13,5 +13,14 @@ public class PickUpPayment extends PaymentMethod {
 		System.out.println("A check for $ "+df.format(paymentAmount)+" is waiting for "+eName+" at the PostMaster.");
 
 	}
+	public String payToString(String eName, double paymentAmount){
+		if (paymentAmount != 0){
+		DecimalFormat df = new DecimalFormat("#.00");
+		String paye = "A check for $ "+df.format(paymentAmount)+" is waiting for "+eName+" at the PostMaster.";
+		return paye;
+		}
+	return null;
+
+	}
 
 }
